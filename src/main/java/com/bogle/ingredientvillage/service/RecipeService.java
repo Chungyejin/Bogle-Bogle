@@ -13,7 +13,6 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class RecipeService {
 
-
     private final RecipeRepository recipeRepository;
 
     /**
