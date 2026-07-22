@@ -42,3 +42,8 @@
        ▼
 [ Flutter 앱 ]
          ⑤ JSON 데이터를 받아 파싱 후, 사용자 화면에 예쁜 레시피 카드로 출력
+
+### 앱 실행하는 방법
+1. java를 실행한다
+2. terminal로 가서 app 파일에 cd해서 들어간다
+3. flutter run -d chrome
