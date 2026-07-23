@@ -5,7 +5,7 @@
 ##  Tech Stack (기술 스택)
 
 ###  Front-end (Client)
-*   **Framework:** Flutter 
+*   **Framework:** Flutter, Dart
     *   *역할: Android 및 iOS 통합 UI 구현, 사용자 재료 선택 인터페이스 제공 및 백엔드 API 연동*
 
 ###  Back-end (Server)
@@ -13,12 +13,25 @@
 *   **Language:** Java 17
 *   **Build Tool:** Gradle
     *   *역할: RESTful API 엔드포인트 제공, 재료 매칭 비즈니스 로직 처리 및 데이터 정제(DTO 변환)*
+ 
+      
+### ① Controller (컨트롤러)
+   프론트엔드가 보낸 HTTP 요청을 가장 먼저 받는다
+### ② Service (서비스)
+   앱의 핵심 규칙과 알고리즘이 작동하는곳이다.
+
 
 ### Database & ORM
 *   **Database:** MySQL 
 *   **ORM:** Spring Data JPA 
     *   *역할: 레시피-재료 관계형 데이터 저장 및 관리, 다대다(N:M) 매핑 테이블 조인(JOIN) 연산 수행*
 
+
+## 앱 실행하는 법
+1. java를 실행한다
+2. terminal로 가서 app 파일에 cd해서 들어간다
+3. flutter run -d chrome
+4. 
 ##  전체 시스템 상호작용 흐름 (System Architecture & Flow)
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지 **Flutter(프론트엔드) ➡️ Spring Boot(백엔드) ➡️ MySQL(데이터베이스)**로 이어지는 전체 흐름은 다음과 같이 상호작용합니다.
@@ -42,8 +55,4 @@
        ▼
 [ Flutter 앱 ]
          ⑤ JSON 데이터를 받아 파싱 후, 사용자 화면에 예쁜 레시피 카드로 출력
-
-### 앱 실행하는 방법
-1. java를 실행한다
-2. terminal로 가서 app 파일에 cd해서 들어간다
-3. flutter run -d chrome
+``
