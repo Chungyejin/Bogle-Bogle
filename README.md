@@ -33,7 +33,7 @@
 1. java를 실행한다
 2. terminal로 가서 app 파일에 cd해서 들어간다
 3. flutter run -d chrome
-4. 
+ 
 ##  전체 시스템 상호작용 흐름 (System Architecture & Flow)
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지의 전체 흐름은 다음과 같이 상호작용합니다.
