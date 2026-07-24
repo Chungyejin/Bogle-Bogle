@@ -6,8 +6,8 @@
 
 ###  Front-end (Client)
 *   **Framework:** Flutter
-*   **Language: ** Dart
-    *   *역할: Android 및 iOS 통합 UI 구현, 사용자 재료 선택 인터페이스 제공 및 백엔드 API 연동*
+*   **Language:** Dart
+    
 
 ###  Back-end (Server)
 *   **Framework:** Spring Boot 
