@@ -5,15 +5,13 @@
 ##  Tech Stack (기술 스택)
 
 ###  Front-end (Client)
-*   **Framework:** Dart
+*   **Framework:** Flutter
+*   **Language: ** Dart
     *   *역할: Android 및 iOS 통합 UI 구현, 사용자 재료 선택 인터페이스 제공 및 백엔드 API 연동*
 
 ###  Back-end (Server)
 *   **Framework:** Spring Boot 
 *   **Language:** Java 17
-*   **Build Tool:** Gradle
-    *   *역할: RESTful API 엔드포인트 제공, 재료 매칭 비즈니스 로직 처리 및 데이터 정제(DTO 변환)*
- 
       
 ### ① Controller (컨트롤러)
    프론트엔드가 보낸 HTTP 요청을 가장 먼저 받는다
