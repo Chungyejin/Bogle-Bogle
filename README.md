@@ -38,28 +38,22 @@
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지의 전체 흐름은 다음과 같이 상호작용합니다.
 
-``text 
-📱 [1. Flutter (Frontend)]
-   - 화면에서 사용자가 선택한 재료 ID 목록(1, 2) 전달
-   - GET /api/recipes/match?ingredientIds=1,2
-                          ↓
-🌐 [2. Controller (대문/창구)]
-   - HTTP 요청을 받고, 파라미터(1, 2)를 추출하여 Service로 전달
-                          ↓
-🧠 [3. Service (비즈니스 로직/주방장)]
-   - "재료 1, 2번으로 만들 수 있는 레시피를 가져와라"라고 Repository에 명령
-                          ↓
-🗄️ [4. Repository (DB 창고 관리인)]
-   - SQL(JPQL)을 실행하여 DB 데이터 조회
-                          ↓
-🏛️ [5. Domain / Entity (DB 데이터 설계도)]
-   - DB에서 읽어온 원본 데이터 레코드들을 자바 객체(Recipe Entity)로 변환
-                          ↓
-📦 [6. DTO (포장 상자)]
-   - Recipe Entity에서 프론트엔드에 필요한 정보만 쏙 뽑아 RecipeResponse DTO로 변환
-                          ↓
-📱 [7. Flutter (Frontend)]
-   - JSON 응답을 받아 화면에 카드로 출력한다.
+
+```mermaid
+flowchart TD
+    A["📱 1. Flutter (Frontend)"] -->|"GET /api/recipes/match?ingredientIds=1,2"| B["🌐 2. Controller (요청 창구)"]
+    B -->|"파라미터 전달"| C["🧠 3. Service (비즈니스 로직)"]
+    C -->|"레시피 조회 명령"| D["🗄️ 4. Repository (DB 관리)"]
+    D -->|"SQL / JPQL 실행"| E[("🏛️ 5. Domain / Entity")]
+    E -->|"필요한 데이터만 추출"| F["📦 6. RecipeResponse DTO"]
+    F -->|"JSON 응답"| A
+
+    style A fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
+    style B fill:#e1f5fe,stroke:#0288d1,stroke-width:1px
+    style C fill:#e8f5e9,stroke:#388e3c,stroke-width:1px
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:1px
+    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    style F fill:#eceff1,stroke:#455a64,stroke-width:1px
 
 ## 레시피를 위해 사용한 데이터 셋 링크들
 https://www.kaggle.com/datasets/hamzahmukadam/cusines-dataset?resource=download
