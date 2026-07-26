@@ -38,7 +38,6 @@
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지의 전체 흐름은 다음과 같이 상호작용합니다.
 
-```text
 📱 [1. Flutter (Frontend)]
    - 화면에서 사용자가 선택한 재료 ID 목록(1, 2) 전달
    - GET /api/recipes/match?ingredientIds=1,2
@@ -60,3 +59,7 @@
                           ↓
 📱 [7. Flutter (Frontend)]
    - JSON 응답을 받아 화면에 카드로 출력한다.
+
+## 레시피를 위해 사용한 데이터 셋 링크들
+https://www.kaggle.com/datasets/hamzahmukadam/cusines-dataset?resource=download
+
