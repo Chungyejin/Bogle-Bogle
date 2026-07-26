@@ -38,6 +38,8 @@
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지의 전체 흐름은 다음과 같이 상호작용합니다.
 
+## 레시피를 위해 사용한 데이터 셋 링크들
+https://www.kaggle.com/datasets/hamzahmukadam/cusines-dataset?resource=download
 
 ```mermaid
 flowchart TD
@@ -55,6 +57,5 @@ flowchart TD
     style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
     style F fill:#eceff1,stroke:#455a64,stroke-width:1px
 
-## 레시피를 위해 사용한 데이터 셋 링크들
-https://www.kaggle.com/datasets/hamzahmukadam/cusines-dataset?resource=download
+
 
