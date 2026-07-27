@@ -503,7 +503,7 @@ class RecipeDetailPage extends StatelessWidget {
               ),
             ),
           ],
-        ),
+         ),
       ),
     );
   }
