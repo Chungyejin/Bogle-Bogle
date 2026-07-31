@@ -4,15 +4,17 @@ import com.bogle.ingredientvillage.domain.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-@Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
-    // 사용자가 가진 재료 ID 리스트에 해당하는 레시피들을 중복 없이 조회합니다.
+    // 1. 공공 API 중복 저장 방지용 메서드
+    boolean existsByApiRecipeId(String apiRecipeId);
+
+    // 2. 재료 이름 리스트로 레시피 검색하는 쿼리
     @Query("SELECT DISTINCT r FROM Recipe r " +
-            "JOIN r.recipeIngredients ri " +
-            "WHERE ri.ingredient.id IN :ingredientIds")
-    List<Recipe> findRecipesByIngredientIds(@Param("ingredientIds") List<Long> ingredientIds);
+            "JOIN r.ingredients i " +
+            "WHERE i.name IN :ingredients")
+    List<Recipe> findRecipesByIngredients(@Param("ingredients") List<String> ingredients);
 }

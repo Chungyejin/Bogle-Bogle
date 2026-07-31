@@ -1,31 +1,35 @@
 package com.bogle.ingredientvillage.controller;
 
-import com.bogle.ingredientvillage.dto.RecipeResponse;
-import com.bogle.ingredientvillage.service.RecipeService;
+import com.bogle.ingredientvillage.dto.RecipeResponseDto;
+import com.bogle.ingredientvillage.service.ApiRecipeBatchService;
+import com.bogle.ingredientvillage.service.RecipeSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/recipes")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // 👈 플러터 웹(CORS) 요청 허용 설정
+@CrossOrigin(origins = "*")
 public class RecipeController {
 
-    private final RecipeService recipeService;
+    private final RecipeSearchService recipeSearchService;
+    private final ApiRecipeBatchService apiRecipeBatchService;
 
-    @GetMapping("/match")
-    public ResponseEntity<List<RecipeResponse>> getRecipesByIngredients(
-            @RequestParam("ingredientIds") List<Long> ingredientIds) {
+    // 보유 재료 기반 레시피 검색 API
+    @GetMapping("/search")
+    public ResponseEntity<List<RecipeResponseDto>> searchRecipes(@RequestParam List<String> ingredients) {
+        List<RecipeResponseDto> results = recipeSearchService.searchByIngredients(ingredients);
+        return ResponseEntity.ok(results);
+    }
 
-        List<RecipeResponse> responses = recipeService.getRecipesByIngredients(ingredientIds)
-                .stream()
-                .map(RecipeResponse::new)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(responses);
+    // 공공데이터 DB 수집 (관리용 API)
+    @PostMapping("/sync")
+    public ResponseEntity<String> syncRecipes(@RequestParam(defaultValue = "1") int start,
+                                              @RequestParam(defaultValue = "100") int end) {
+        apiRecipeBatchService.fetchAndSaveRecipes(start, end);
+        return ResponseEntity.ok("공공데이터 레시피 수집이 완료되었습니다.");
     }
 }

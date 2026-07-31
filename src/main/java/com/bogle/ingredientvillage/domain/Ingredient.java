@@ -1,20 +1,32 @@
 package com.bogle.ingredientvillage.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.AccessLevel;
+import lombok.*;
 
 @Entity
-@Table(name = "Ingredient") // 실제 DB 테이블 이름과 매핑
+@Table(name = "ingredient")
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ingredientId;
 
-    @Column(nullable = false, length = 50)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
     private String name;
+    private String quant;
+
+    // Recipe 연관관계 메서드
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+
 }

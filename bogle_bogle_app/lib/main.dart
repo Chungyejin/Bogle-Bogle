@@ -296,8 +296,7 @@ class _KitchenPageState extends State<KitchenPage> {
         .map((e) => e.id ?? e.name)
         .join(',');
 
-    final Uri url = Uri.parse('http://localhost:8080/api/recipes/match?ingredientIds=$idsParam');
-
+    final url = Uri.parse('http://localhost:8080/api/recipes/search?ingredients=$idsParam');
     try {
       final response = await http.get(url);
 
