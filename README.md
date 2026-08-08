@@ -6,8 +6,7 @@
 ##  Tech Stack (기술 스택)
 
 ###  Front-end (Client)
-*   **Framework:** Flutter
-*   **Language:** Dart
+*    **Language:** HTML, CSS
     
 
 ###  Back-end (Server)
