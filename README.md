@@ -1,6 +1,5 @@
 # 보글보글 재료 마을 (Bogle-Bogle)
 
---> 다음 단계 api 다운 받고 테스트해보기 ambiente 전부 준비됨
 
 **사용자가 선택한 식재료를 기반으로 최적의 레시피를 매칭해주는 백엔드 서비스**
 ---
@@ -40,9 +39,6 @@
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지의 전체 흐름은 다음과 같이 상호작용합니다.
 
-## 레시피를 위해 사용한 데이터 셋 링크들
-https://github.com/hye1ns/datanalysis_recipe
-https://github.com/josephrmartinez/recipe-dataset
 
 ```mermaid
 flowchart TD
