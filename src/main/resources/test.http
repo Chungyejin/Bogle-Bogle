@@ -1,0 +1,24 @@
+### 1. 테스트용 레시피 등록
+POST http://localhost:8080/api/kitchen/recipes
+Content-Type: application/json
+
+{
+  "name": "계란볶음밥",
+  "description": "고소하고 맛있는 간단 계란볶음밥",
+  "recipeIngredients": [
+    { "name": "계란", "requiredQuantity": 2 },
+    { "name": "대파", "requiredQuantity": 1 }
+  ]
+}
+
+### 2. 냉장고에 재료 추가
+POST http://localhost:8080/api/kitchen/ingredients
+Content-Type: application/json
+
+{
+  "name": "계란",
+  "quantity": 5
+}
+
+### 3. 냉장고 재료 전체 조회
+GET http://localhost:8080/api/kitchen/ingredients
