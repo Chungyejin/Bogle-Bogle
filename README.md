@@ -40,7 +40,7 @@
 
 ```mermaid
 flowchart TD
-    A["📱 1. Flutter (Frontend)"] -->|"GET /api/recipes/match?ingredientIds=1,2"| B["🌐 2. Controller (요청 창구)"]
+    A["📱 1. Frontend"] -->|"GET /api/recipes/match?ingredientIds=1,2"| B["🌐 2. Controller (요청 창구)"]
     B -->|"파라미터 전달"| C["🧠 3. Service (비즈니스 로직)"]
     C -->|"레시피 조회 명령"| D["🗄️ 4. Repository (DB 관리)"]
     D -->|"SQL / JPQL 실행"| E[("🏛️ 5. Domain / Entity")]
