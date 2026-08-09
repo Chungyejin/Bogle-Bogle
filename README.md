@@ -45,7 +45,7 @@ flowchart TD
     C -->|"레시피 조회 명령"| D["🗄️ 4. Repository (DB 관리)"]
     D -->|"SQL / JPQL 실행"| E[("🏛️ 5. Domain / Entity")]
     E -->|"필요한 데이터만 추출"| F["📦 6. RecipeResponse DTO"]
-    F -->|"JSON 응답"| A
+    F -->|"응답"| A
 
     style A fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
     style B fill:#e1f5fe,stroke:#0288d1,stroke-width:1px
