@@ -37,6 +37,10 @@
 
 사용자가 앱에서 재료를 선택하고 결과를 보기까지의 전체 흐름은 다음과 같이 상호작용합니다.
 
+## 초기 ERD 시스템
+<img width="1211" height="515" alt="image" src="https://github.com/user-attachments/assets/4252784d-6ba7-4445-afbb-6e4cf4e1e1af" />
+
+
 
 ```mermaid
 flowchart TD
