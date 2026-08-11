@@ -34,7 +34,6 @@ public class KitchenController {
 
     // [기능 2-2] 선택한 재료로 요리 가능한 레시피 조회
     // 요청 방식: POST http://localhost:8080/api/kitchen/recipes/recommend
-    // 전달 데이터: JSON ["계란", "양파"]
     @PostMapping("/recipes/recommend")
     public List<Recipe> recommendRecipes(@RequestBody List<String> selectedIngredients) {
         return kitchenService.findRecipesBySelectedIngredients(selectedIngredients);

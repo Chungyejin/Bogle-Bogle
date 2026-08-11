@@ -72,7 +72,7 @@ public class KitchenService {
         return recommendedRecipes;
     }
 
-    // [기능 2-3] 레시피 활용 시 필요 수량 차감
+    // [기능 2-3] 레시피 활용 시 필요 수량 차감 (부족한 재료 수량 사전 검증 포함)
     @Transactional
     public String useRecipe(Long recipeId) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
@@ -83,12 +83,32 @@ public class KitchenService {
 
         Recipe recipe = recipeOptional.get();
 
-        // 레시피에 필요한 모든 재료 차감 진행
+        // 1. 사전 검사: 부족한 재료 목록을 담을 리스트 생성
+        List<String> missingIngredients = new ArrayList<>();
+
         for (RecipeIngredient ri : recipe.getRecipeIngredients()) {
             Optional<Ingredient> fridgeIngOptional = ingredientRepository.findByName(ri.getName());
 
-            if (fridgeIngOptional.isPresent()) {
+            if (fridgeIngOptional.isEmpty()) {
+                // 냉장고에 재료가 아예 없는 경우
+                missingIngredients.add(ri.getName() + " (필요: " + ri.getRequiredQuantity() + "개, 보유: 0개)");
+            } else {
                 Ingredient fridgeIng = fridgeIngOptional.get();
+                if (fridgeIng.getQuantity() < ri.getRequiredQuantity()) {
+                    // 재료는 있지만 수량이 부족한 경우
+                    int shortage = ri.getRequiredQuantity() - fridgeIng.getQuantity();
+                    missingIngredients.add(ri.getName() + " (" + shortage + "개 부족)");
+                }
+            }
+        }
+
+        // 2. 검증 조건문: 부족한 재료가 하나라도 있으면 차감하지 않고 안내 메시지 반환
+        if (!missingIngredients.isEmpty()) {
+            return "재료가 부족하여 요리를 할 수 없습니다.\n- 부족한 재료: " + String.join(", ", missingIngredients);
+        } else {
+            // 3. 재료가 모두 충분할 때만 실제 차감 진행
+            for (RecipeIngredient ri : recipe.getRecipeIngredients()) {
+                Ingredient fridgeIng = ingredientRepository.findByName(ri.getName()).get();
                 int remainQty = fridgeIng.getQuantity() - ri.getRequiredQuantity();
 
                 if (remainQty <= 0) {
@@ -100,9 +120,9 @@ public class KitchenService {
                     ingredientRepository.save(fridgeIng);
                 }
             }
-        }
 
-        return recipe.getName() + " 요리가 완료되어 재료가 차감되었습니다.";
+            return recipe.getName() + " 요리가 완료되어 재료가 차감되었습니다.";
+        }
     }
 
     // [테스트용] 샘플 레시피 직접 등록 API
