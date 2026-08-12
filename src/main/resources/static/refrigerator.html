@@ -22,8 +22,12 @@
                 <div class="card ac-card">
                     <h2>🌱 신규 재료 추가</h2>
                     <form id="add-ingredient-form" class="form-group">
-                        <input type="text" id="ing-name" placeholder="재료명 (예: 계란)" required>
-                        <input type="number" id="ing-qty" placeholder="수량" min="1" value="1" required>
+                        <input type="text" placeholder="필요 재료명" class="rec-ing-name" required
+                               oninvalid="this.setCustomValidity('재료이름은 필수입니다.')"
+                               oninput="this.setCustomValidity('')">>
+                        <input type="number" id="ing-qty" placeholder="수량" min="1" value="1" required
+                               oninvalid="this.setCustomValidity('수량은 1개 이상이어야 합니다.')"
+                               oninput="this.setCustomValidity('')">
                         <button type="submit" class="btn-primary">추가</button>
                     </form>
                 </div>

@@ -174,8 +174,13 @@
         const div = document.createElement('div');
         div.className = 'form-group';
         div.innerHTML = `
-            <input type="text" placeholder="필요 재료명" class="rec-ing-name" required>
-            <input type="number" placeholder="필요 수량" class="rec-ing-qty" min="1" value="1" required>
+            <input type="text" placeholder="필요 재료명" class="rec-ing-name" required
+                oninvalid="this.setCustomValidity('재료이름은 필수입니다.')"
+                oninput="this.setCustomValidity('')">>
+            <!-- 레시피 등록 폼 내부 입력칸 -->
+            <input type="number" placeholder="필요 수량" class="rec-ing-qty" min="1" value="1" required
+                   oninvalid="this.setCustomValidity('수량은 1개 이상이어야 합니다.')"
+                   oninput="this.setCustomValidity('')">
         `;
         container.appendChild(div);
     }
