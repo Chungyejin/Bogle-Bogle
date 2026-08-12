@@ -40,7 +40,9 @@
 ## 초기 ERD 시스템
 <img width="1211" height="515" alt="image" src="https://github.com/user-attachments/assets/4252784d-6ba7-4445-afbb-6e4cf4e1e1af" />
 
-
+### 예외처리
+1. 같은 재료를 다시 입력할때, 이미 있는재료에서 수량만 추가하기
+2. 0이나 음수를 입력할떄 불가능하다고 뜨기
 
 ```mermaid
 flowchart TD
