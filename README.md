@@ -44,19 +44,17 @@
 
 ```mermaid
 flowchart TD
-    A["📱 1. Frontend"] -->|"GET /api/recipes/match?ingredientIds=1,2"| B["🌐 2. Controller (요청 창구)"]
-    B -->|"파라미터 전달"| C["🧠 3. Service (비즈니스 로직)"]
-    C -->|"레시피 조회 명령"| D["🗄️ 4. Repository (DB 관리)"]
-    D -->|"SQL / JPQL 실행"| E[("🏛️ 5. Domain / Entity")]
-    E -->|"필요한 데이터만 추출"| F["📦 6. RecipeResponse DTO"]
-    F -->|"응답"| A
+    A["📱 1. Frontend<br>(kitchen.html / refrigerator.html)"] -->|"GET /api/kitchen/ingredients<br>POST /api/kitchen/recipes/recommend"| B["🌐 2. Controller<br>(KitchenController)"]
+    B -->|"요청 데이터 전달"| C["🧠 3. Service<br>(KitchenService)"]
+    C -->|"CRUD & Finder 호출"| D["🗄️ 4. Repository<br>(Ingredient/RecipeRepository)"]
+    D -->|"JPA / SQL 실행"| E["🏛️ 5. Entity<br>(Ingredient / Recipe / RecipeIngredient)"]
+    E -->|"조회 데이터 반환"| C
+    C -->|"최종 처리 결과 반환"| A
 
-    style A fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
-    style B fill:#e1f5fe,stroke:#0288d1,stroke-width:1px
-    style C fill:#e8f5e9,stroke:#388e3c,stroke-width:1px
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:1px
-    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
-    style F fill:#eceff1,stroke:#455a64,stroke-width:1px
-
+    style A fill:#FFF3E0,stroke:#FF9800,stroke-width:2px
+    style B fill:#E3F2FD,stroke:#2196F3,stroke-width:2px
+    style C fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px
+    style D fill:#FFF8E1,stroke:#FFC107,stroke-width:2px
+    style E fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
 
 
