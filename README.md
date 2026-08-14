@@ -13,15 +13,13 @@
 *   **Framework:** Spring Boot 
 *   **Language:** Java 17
       
-### ① Controller (컨트롤러)
-   프론트엔드가 보낸 HTTP 요청을 가장 먼저 받는다
-### ② Service (서비스)
-   앱의 핵심 규칙과 알고리즘이 작동하는곳이다. -> Controller에게서 받은 재료 리스트를 가지고 만들수있는 조합을 찾아낸다. 
-### ③ DTO (Data Transfer Object)
-   DB에서 꺼낸 원본 데이터(Domain)에는  민감한 정보나 너무 많은 정보가 들어있을 수 있기때문에 프론트엔드 화면에 딱 필요한 정보만 정돈해서 json형식으로 전달하기 위해 만드는 데이터 전산 틀이다.
-### ④ Entity & Repository (엔티티 & 리포지토리)
-   인터베이스의 테이블 구조를 자바 객체로 1:1 매핑한 클래스
-   Domain(Entity) 객체를 이용해 데이터베이스에 접근하여 데이터를 저장, 수정, 삭제, 조회
+①  Controller (요청 창구): GET /api/recipes/match 엔드포인트를 통해 클라이언트의 식재료 ID 파라미터를 수신합니다.
+
+②  Service (비즈니스 로직): 전달받은 파라미터를 바탕으로 레시피 매칭 및 매칭률 계산 로직을 처리합니다.
+
+③  Repository & Domain: JPA/JPQL을 통해 DB에서 필요한 레시피 및 재료 엔티티 데이터를 조회합니다. 
+
+④ DTO (Data Transfer Object): 엔티티를 직접 반환하지 않고, 화면에 필요한 데이터만 추려 RecipeResponse DTO로 변환하여 클라이언트에 응답합니다.회
 
 ### Database & ORM
 *   **Database:** MySQL 
